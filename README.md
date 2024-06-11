@@ -1,26 +1,65 @@
-# crawler-4-cache
-Crawls the site-maps on a website and opens all of the web pages one at a time. Set a delay to control the speed of the crawl.
+# Crawler4Cache
 
-Purpose:
-Pre-load the server side cache such as nginx fastcgi cache for improved performance for the first visitor.
+Crawler4Cache is a Python script designed to warm the cache of a website by crawling its sitemap and fetching its URLs. This script helps ensure that the cache is preloaded with the necessary content, improving the website's performance and user experience.
 
-Instructions:
-Install python and dependent libraries (see code)
+## Features
 
-***Edit the site map names
-***Edit the list of exclusions such as jpg png webp etc
-***Set time delay to slow down or speed up the process.
+- Fetches URLs from multiple sitemaps.
+- Uses concurrent fetching to speed up the cache warming process.
+- Logs the progress and any errors encountered during the process.
 
-How to Run:
-python crawler.py https://site_you_want_to_crawl
+## Requirements
 
-Thoughts:
-Exploring options for preloading nginx server side cache files after a cache purge.
+- Python 3.x
+- `requests` library
+- `beautifulsoup4` library
 
-Other methods I've seen used wget to download the entire site then delete the files. Seems like a waste of drive life.
+## Installation
 
-Crawling an entire website uses a lot of resources - the site-maps are updated automatically with all the pages we want to preload.
+1. **Clone the Repository**:
+   ```sh
+   git clone https://github.com/finchandchips/crawler-4-cache.git
+   cd crawler-4-cache
 
-created with the help of AI
+2. Install Dependencies:
+   Install the required Python libraries using pip:
 
+   pip install requests beautifulsoup4
+
+HOW TO USE:
+
+1. Run the Script:
+
+   python crawler4cache.py <main_url>
+
+
+   Replace <main_url> with the base URL of your website. The script will automatically look for the following sitemaps:
+
+   <main_url>/page-sitemap.xml
+   <main_url>/product-sitemap.xml
+   <main_url>/post-sitemap.xml
+
+   ***Note: Add or remove sitemaps
+   ***This setup I'm using YOAST plugin with WooCommerce
+
+2. Logging:
+
+   The script logs its progress and any errors to cache_warm.log in the same directory.
+
+
+
+Example
+To run the script for a website with the base URL https://example.com, use the following command:
+
+   python crawler4cache.py https://example.com
+
+License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+Contributing
+Feel free to fork this repository and contribute by submitting pull requests. Any contributions are appreciated!
+
+Acknowledgements
+Beautiful Soup: A library for parsing HTML and XML documents.
+Requests: HTTP for Humans: A simple and elegant HTTP library for Python.
 
